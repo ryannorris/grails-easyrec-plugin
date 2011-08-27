@@ -4,22 +4,22 @@ class EasyrecPluginGrailsPlugin {
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3.7 > *"
     // the other plugins this plugin depends on
-    def dependsOn = [:]
+    def dependsOn = [rest:0.6.1]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp"
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
-    def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def author = "Ryan Norris"
+    def authorEmail = "ryannorris@gmail.com"
+    def title = "Easyrec Plugin"
     def description = '''\\
-Brief description of the plugin.
+Provides services for talking with the EasyRec recommendation engine.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/easyrec-plugin"
+    def documentation = "http://grails.org/plugin/grails-easyrec-plugin"
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before 

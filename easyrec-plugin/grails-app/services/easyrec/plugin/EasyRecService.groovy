@@ -1,6 +1,7 @@
 package easyrec.plugin
 
-import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.HTTPBuilder;
+
 
 class EasyRecService {
 
