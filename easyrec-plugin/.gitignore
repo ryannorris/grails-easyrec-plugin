@@ -2,3 +2,4 @@
 /.link_to_grails_plugins
 /target-eclipse
 *.iml
+/grails-easyrec-plugin-0.1.zip

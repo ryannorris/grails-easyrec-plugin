@@ -1,8 +1,9 @@
-<plugin name='grails-easyrec-plugin' version='0.1' grailsVersion='1.3.7 &gt; *'>
+<plugin name='easyrec-plugin' version='0.1' grailsVersion='1.3.7 &gt; *'>
   <author>Ryan Norris</author>
+  <authorEmail>ryannorris@gmail.com</authorEmail>
   <title>Easyrec Plugin</title>
   <description>\
-Provides access to the EasyRec recommendation engine.
+Provides services for talking with the EasyRec recommendation engine.
 </description>
   <documentation>http://grails.org/plugin/grails-easyrec-plugin</documentation>
   <resources>
@@ -12,6 +13,8 @@ Provides access to the EasyRec recommendation engine.
     <resource>UrlMappings</resource>
     <resource>easyrec.plugin.EasyRecService</resource>
   </resources>
-  <dependencies />
+  <dependencies>
+    <plugin name='rest' version='0.6.1' />
+  </dependencies>
   <behavior />
 </plugin>
