@@ -13,8 +13,6 @@ Provides services for talking with the EasyRec recommendation engine.
     <resource>UrlMappings</resource>
     <resource>easyrec.plugin.EasyRecService</resource>
   </resources>
-  <dependencies>
-    <plugin name='rest' version='0.6.1' />
-  </dependencies>
+  <dependencies />
   <behavior />
 </plugin>
