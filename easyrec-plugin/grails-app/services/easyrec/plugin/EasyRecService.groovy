@@ -9,6 +9,8 @@ class EasyRecService implements InitializingBean {
 
 	static transactional = false
 
+    ResultParser resultParser = new ResultParser()
+
     String apiKey
     String tenantId
     String url
@@ -30,11 +32,20 @@ class EasyRecService implements InitializingBean {
         return null
 	}
 
-	def recomendationsForUser(String userId) {
+	EasyrecRecommendResponse recomendationsForUser(String userId) {
         try {
+            if (userId == null || userId.trim().length() == 0) {
+                log.warn("Empty userId: '$userId'")
+                return null
+            }
             def http = new HTTPBuilder(url)
-            def response = http.get(path: getPath('/api/1.0/recommendationsforuser'),
+            def xml = http.get(path: getPath('/api/1.0/recommendationsforuser'),
                     query: [apikey: apiKey, tenantid: tenantId, userid: userId])
+
+            log.info("Xml from server: $xml")
+
+            EasyrecRecommendResponse response = resultParser.fromXml(xml)
+
             return response
         } catch (ConnectException e) {
             log.error("Can't connect to EasyRec server. By url: $url / $context", e)
