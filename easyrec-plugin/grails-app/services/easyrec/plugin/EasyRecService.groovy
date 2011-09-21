@@ -6,7 +6,8 @@ import org.springframework.beans.factory.InitializingBean
 import groovyx.net.http.HttpResponseException
 
 class EasyRecService implements InitializingBean {
-	static transactional = true
+
+	static transactional = false
 
     String apiKey
     String tenantId
@@ -14,13 +15,19 @@ class EasyRecService implements InitializingBean {
     String context
 
 	def view(String userId, String sessionId, String itemId, String itemDescription, String itemUrl, String itemImageUrl = null, String actionTime = null) {
-		def http = new HTTPBuilder(url)
+        try {
+            def http = new HTTPBuilder(url)
+            def response = http.get(path: getPath('/api/1.0/view'),
+                    query: [apikey: apiKey, tenantid: tenantId, userid: userId,
+                            sessionid: sessionId, itemid: itemId, itemdescription: itemDescription, itemurl: itemUrl, itemimageurl: itemImageUrl])
 
-		def response = http.get(path: getPath('/api/1.0/view'),
-                query: [apikey: apiKey, tenantid: tenantId, userid: userId,
-                        sessionid: sessionId, itemid: itemId, itemdescription: itemDescription, itemurl: itemUrl, itemimageurl: itemImageUrl])
-
-		return response
+            return response
+        } catch (ConnectException e) {
+            log.error("Can't connect to EasyRec server. By url: $url / $context. Message: $e.message")
+        } catch (HttpResponseException e) {
+            log.error("Not found. By url: $url / $context. Message: $e.message")
+        }
+        return null
 	}
 
 	def recomendationsForUser(String userId) {
@@ -29,9 +36,12 @@ class EasyRecService implements InitializingBean {
             def response = http.get(path: getPath('/api/1.0/recommendationsforuser'),
                     query: [apikey: apiKey, tenantid: tenantId, userid: userId])
             return response
+        } catch (ConnectException e) {
+            log.error("Can't connect to EasyRec server. By url: $url / $context", e)
+            return null
         } catch (HttpResponseException e) {
             log.error("Not found. By url: $url / $context", e)
-            throw e //TODO really?
+            return null
         }
 	}
 
