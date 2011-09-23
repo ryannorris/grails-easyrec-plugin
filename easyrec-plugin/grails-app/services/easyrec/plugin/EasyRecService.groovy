@@ -16,10 +16,26 @@ class EasyRecService implements InitializingBean {
     String url
     String context
 
-	def view(String userId, String sessionId, String itemId, String itemDescription, String itemUrl, String itemImageUrl = null, String actionTime = null) {
+    def view(String userId, String sessionId,
+             String itemId, String itemDescription, String itemUrl,
+             String itemImageUrl = null, String actionTime = null) {
+        action('view', userId, sessionId, itemId, itemDescription, itemUrl, itemImageUrl, actionTime)
+    }
+
+    def buy(String userId, String sessionId,
+             String itemId, String itemDescription, String itemUrl,
+             String itemImageUrl = null, String actionTime = null) {
+        action('buy', userId, sessionId, itemId, itemDescription, itemUrl, itemImageUrl, actionTime)
+    }
+
+	def action(String command,
+                 String userId, String sessionId,
+                 String itemId, String itemDescription,
+                 String itemUrl, String itemImageUrl = null, String actionTime = null) {
+        assert command in ['view', 'buy', 'rate']
         try {
             def http = new HTTPBuilder(url)
-            def response = http.get(path: getPath('/api/1.0/view'),
+            def response = http.get(path: getPath("/api/1.0/$command"),
                     query: [apikey: apiKey, tenantid: tenantId, userid: userId,
                             sessionid: sessionId, itemid: itemId, itemdescription: itemDescription, itemurl: itemUrl, itemimageurl: itemImageUrl])
 
