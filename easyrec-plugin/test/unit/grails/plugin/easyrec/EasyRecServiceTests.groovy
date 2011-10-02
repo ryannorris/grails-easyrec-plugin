@@ -1,4 +1,4 @@
-package easyrec.plugin
+package grails.plugin.easyrec
 
 import grails.test.*
 

@@ -1,10 +1,10 @@
-class EasyrecPluginGrailsPlugin {
+class EasyrecGrailsPlugin {
     // the plugin version
     def version = "0.1"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3.7 > *"
     // the other plugins this plugin depends on
-    def dependsOn = [rest:'0.6.1']
+    def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp"
@@ -19,7 +19,7 @@ Provides services for talking with the EasyRec recommendation engine.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/grails-easyrec-plugin"
+    def documentation = "http://grails.org/plugin/easyrec"
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before 
@@ -30,8 +30,34 @@ Provides services for talking with the EasyRec recommendation engine.
     }
 
     def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
+		/*application.domainClasses.each { domainClass ->
+			println "Inspecting ${domainClass.name} for EasyRec support"
+			
+			def recClosure
+			
+			if((recClosure = domainClass.getPropertyValue('reccomended'))) {
+				
+				println "Found ${domainClass.name} to be eligible for EasyRec"
+				
+				def view = { Object[] args ->
+					println this.class.name
+					println args
+					println "view item ${id}"
+					recClosure.delegate = this.delegate
+					recClosure.call()
+				}
+				
+				domainClass.metaClass.view << view
+				
+				println "decorated domain object"
+			}
+		}*/
     }
+	
+	def invokeMethod(String methodName, Object args) {
+		println methodName
+		println args
+	}
 
     def doWithApplicationContext = { applicationContext ->
         // TODO Implement post initialization spring config (optional)

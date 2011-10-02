@@ -1,4 +1,4 @@
-package easyrec.plugin
+package grails.plugin.easyrec
 
 import groovyx.net.http.HTTPBuilder;
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
