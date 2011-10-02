@@ -1,17 +1,17 @@
-<plugin name='easyrec-plugin' version='0.1' grailsVersion='1.3.7 &gt; *'>
+<plugin name='easyrec' version='0.1' grailsVersion='1.3.7 &gt; *'>
   <author>Ryan Norris</author>
   <authorEmail>ryannorris@gmail.com</authorEmail>
   <title>Easyrec Plugin</title>
   <description>\
 Provides services for talking with the EasyRec recommendation engine.
 </description>
-  <documentation>http://grails.org/plugin/grails-easyrec-plugin</documentation>
+  <documentation>http://grails.org/plugin/easyrec</documentation>
   <resources>
     <resource>BuildConfig</resource>
     <resource>Config</resource>
     <resource>DataSource</resource>
     <resource>UrlMappings</resource>
-    <resource>easyrec.plugin.EasyRecService</resource>
+    <resource>grails.plugin.easyrec.EasyRecService</resource>
   </resources>
   <dependencies />
   <behavior />

@@ -1,5 +1,8 @@
 package easyrec.plugin
 
+import grails.plugin.easyrec.EasyrecItem;
+import grails.plugin.easyrec.EasyrecRecommendResponse;
+import grails.plugin.easyrec.ResultParser;
 import grails.test.GrailsUnitTestCase
 
 /**
